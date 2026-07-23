@@ -93,7 +93,7 @@ body.about { background-image: url("images/about-bg.webp"); }
 
 /* Supplied logo artwork (STUDIO / skelton) */
 .logo-img {
-    width: clamp(240px, 30vw, 430px);
+    width: clamp(200px, 24vw, 360px);
     height: auto;
 }
 
@@ -112,9 +112,9 @@ body.about { background-image: url("images/about-bg.webp"); }
 .main-nav {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    font-size: 0.85rem;
-    letter-spacing: 0.12em;
-    padding-left: 0.12em; /* compensates trailing letter-space for true centering */
+    font-size: 0.8rem;
+    letter-spacing: 0.16em;
+    padding-left: 0.16em; /* compensates trailing letter-space for true centering */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -172,7 +172,7 @@ body.about { background-image: url("images/about-bg.webp"); }
 }
 
 .footer-symbol img {
-    width: 34px;
+    width: 28px;
     height: auto;
     display: block;
 }
@@ -217,7 +217,7 @@ body.about { background-image: url("images/about-bg.webp"); }
     }
 
     .logo-img {
-        width: min(72vw, 320px);
+        width: min(62vw, 268px);
     }
 
     .tagline {
@@ -240,7 +240,7 @@ body.about { background-image: url("images/about-bg.webp"); }
     }
 
     .footer-symbol img {
-        width: 30px;
+        width: 25px;
     }
 
     .about-wrapper {
