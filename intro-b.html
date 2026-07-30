@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>About — Studio Skelton</title>
-    <meta name="description" content="Studio Skelton is a London based interior design studio, working across boutique hospitality and private residential projects." />
+    <title>Studio Skelton — intro variant B</title>
+    <meta name="description" content="Studio Skelton — London based hospitality &amp; residential interior design." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="images/about-bg.webp" type="image/webp">
+    <link rel="preload" as="image" href="images/home-bg.webp" type="image/webp">
+    <link rel="preload" as="image" href="images/logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
@@ -17,36 +18,48 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:title" content="About — Studio Skelton" />
-    <meta property="og:description" content="Studio Skelton is a London based interior design studio, working across boutique hospitality and private residential projects." />
-    <meta property="og:url" content="https://oliverwild.github.io/Skelton-Web-Design/about.html" />
+    <meta property="og:title" content="Studio Skelton" />
+    <meta property="og:description" content="Studio Skelton — London based hospitality &amp; residential interior design." />
+    <meta property="og:url" content="https://oliverwild.github.io/Skelton-Web-Design/" />
     <link rel="stylesheet" href="style.css?v=5" />
 </head>
 
-<body class="about">
-    <main class="about-wrapper">
-        <h2 class="about-title"><span class="reveal"><span>About</span></span></h2>
+<body class="home intro-enter">
+    <div class="intro intro--enter" id="intro"><img src="images/symbol.png" alt="" width="40" height="40" /></div>
 
-        <div class="about-text">
-            <p class="about-lead">
-                <span class="reveal"><span>Studio Skelton is a London based</span></span>
-                <span class="reveal"><span>interior design studio.</span></span>
-            </p>
-
-            <p class="about-body">
-                Working across boutique hospitality and private residential projects, the studio
-                creates interiors with a deep sense of place. Every project is informed by a
-                thorough understanding of the building, its history and the people who will use
-                it, shaping spaces with lasting character, warmth and soul.
-            </p>
-        </div>
+    <main class="center-content">
+        <img class="logo-img" src="images/logo.png" alt="Studio Skelton" width="1600" height="595" />
+        <p class="tagline">Hospitality &amp; residential interior design</p>
     </main>
+
+    <nav class="main-nav">
+        <a href="about.html">About</a>
+        <span>|</span>
+        <a href="gallery.html">Gallery</a>
+        <span>|</span>
+        <a href="https://www.instagram.com/studioskelton/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <span>|</span>
+        <a href="mailto:info@studioskelton.co">Contact</a>
+    </nav>
 
     <footer class="footer-symbol">
         <a href="index.html">
             <img src="images/symbol.png" alt="Home" width="34" height="34">
         </a>
     </footer>
+
+    <script>
+    // Opening hold plays once per browsing session
+    (function () {
+        try {
+            if (sessionStorage.getItem('seenIntroB')) {
+                document.body.classList.add('no-intro');
+            } else {
+                sessionStorage.setItem('seenIntroB', '1');
+            }
+        } catch (e) { /* private mode: just play it */ }
+    })();
+    </script>
 
     <script>
     // Soft fade-out when navigating between pages
