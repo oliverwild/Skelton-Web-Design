@@ -51,6 +51,8 @@
     <script>
     // Opening hold plays once per browsing session
     (function () {
+        // ?intro forces a replay - handy while reviewing
+        if (location.search.indexOf('intro') !== -1) return;
         try {
             if (sessionStorage.getItem('seenIntroB')) {
                 document.body.classList.add('no-intro');
