@@ -91,9 +91,10 @@ body.about { background-image: url("images/about-bg.webp"); }
     padding: 3rem 1.5rem 0;
 }
 
-/* Supplied logo artwork (STUDIO / skelton) */
+/* Supplied logo artwork (STUDIO / skelton).
+   Fluid: scales smoothly at every width, no jump at any breakpoint. */
 .logo-img {
-    width: clamp(200px, 24vw, 360px);
+    width: clamp(180px, 14vw + 100px, 360px);
     height: auto;
 }
 
@@ -102,7 +103,7 @@ body.about { background-image: url("images/about-bg.webp"); }
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 400;
-    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    font-size: clamp(0.86rem, 0.35vw + 0.78rem, 1.12rem);
     letter-spacing: 0.1em;
     text-indent: 0.1em; /* compensates trailing letter-space so text is truly centered */
     margin-top: 1.3rem;
@@ -112,14 +113,14 @@ body.about { background-image: url("images/about-bg.webp"); }
 .main-nav {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    font-size: 0.8rem;
+    font-size: clamp(0.63rem, 0.3vw + 0.56rem, 0.8rem);
     letter-spacing: 0.16em;
     padding-left: 0.16em; /* compensates trailing letter-space for true centering */
     display: flex;
     justify-content: center;
     align-items: center;
     white-space: nowrap;
-    margin-bottom: 124px; /* clears the fixed symbol */
+    margin-bottom: clamp(88px, 8vw + 40px, 124px); /* clears the fixed symbol */
 }
 
 .main-nav a {
@@ -137,7 +138,7 @@ body.about { background-image: url("images/about-bg.webp"); }
 }
 
 .main-nav span {
-    margin: 0 0.7rem;
+    margin: 0 clamp(0.34rem, 0.5vw, 0.7rem);
 }
 
 /* SYMBOL - pinned to the bottom of the screen, always visible.
@@ -148,7 +149,7 @@ body.about { background-image: url("images/about-bg.webp"); }
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 56px 0 44px;
+    padding: clamp(40px, 4vw, 56px) 0 clamp(30px, 3.2vw, 44px);
     text-align: center;
     z-index: 10;
     background: linear-gradient(
@@ -172,7 +173,7 @@ body.about { background-image: url("images/about-bg.webp"); }
 }
 
 .footer-symbol img {
-    width: 28px;
+    width: clamp(22px, 1.6vw + 12px, 28px);
     height: auto;
     display: block;
 }
@@ -190,7 +191,7 @@ body.about { background-image: url("images/about-bg.webp"); }
 
 .about-title {
     font-family: 'Lato', sans-serif;
-    font-size: 0.85rem;
+    font-size: clamp(0.7rem, 0.18vw + 0.65rem, 0.85rem);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.3em;
@@ -200,7 +201,7 @@ body.about { background-image: url("images/about-bg.webp"); }
 .about-lead {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: clamp(1.12rem, 0.9vw + 0.9rem, 1.5rem);
     line-height: 1.5;
     letter-spacing: 0.01em;
     margin-bottom: 2rem;
@@ -209,7 +210,7 @@ body.about { background-image: url("images/about-bg.webp"); }
 .about-text {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    font-size: 0.9rem;
+    font-size: clamp(0.84rem, 0.16vw + 0.8rem, 0.9rem);
     line-height: 2.05;
     letter-spacing: 0.02em;
     max-width: 560px;
@@ -238,7 +239,7 @@ body.gallery {
 
 .gallery-home:hover { opacity: 1; }
 
-.gallery-home img { width: 120px; height: auto; display: block; }
+.gallery-home img { width: clamp(86px, 5vw + 50px, 120px); height: auto; display: block; }
 
 .gallery-feed {
     animation: fadein 1.2s ease 0.3s both;
@@ -283,37 +284,12 @@ body.gallery {
 }
 
 /* ============ RESPONSIVE ============ */
+/* Type and logo sizes are fluid above, so this block only handles
+   layout differences - no font-size jumps at the breakpoint. */
 @media (max-width: 768px) {
 
     body {
         background-attachment: scroll; /* fixed is unreliable on mobile */
-    }
-
-    .logo-img {
-        width: min(62vw, 268px);
-    }
-
-    .tagline {
-        font-size: 0.95rem;
-        letter-spacing: 0.08em;
-    }
-
-    .main-nav {
-        font-size: 0.78rem;
-        letter-spacing: 0.1em;
-        margin-bottom: 104px;
-    }
-
-    .main-nav span {
-        margin: 0 0.5rem;
-    }
-
-    .footer-symbol {
-        padding: 44px 0 32px;
-    }
-
-    .footer-symbol img {
-        width: 25px;
     }
 
     .about-wrapper {
@@ -323,18 +299,5 @@ body.gallery {
         margin-left: 0;
         width: 100%;
         padding-bottom: 130px;
-    }
-
-    .about-text {
-        font-size: 0.88rem;
-        line-height: 1.9;
-    }
-
-    .about-lead {
-        font-size: 1.3rem;
-    }
-
-    .gallery-home img {
-        width: 96px;
     }
 }
