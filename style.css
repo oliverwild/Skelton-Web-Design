@@ -323,7 +323,9 @@ body.about { background-image: url("images/about-bg.webp"); }
     margin-bottom: 1.6rem;
 }
 
-/* ============ GALLERY PAGE ============ */
+/* ============ GALLERY PAGE (dormant) ============
+   The gallery page is not live yet. These styles are kept ready
+   for when the photography arrives - see gallery.html in git history. */
 
 body.gallery {
     display: block;
