@@ -57,9 +57,10 @@ body {
 }
 
 /* ---- OPENING HOLD ----
-   Two variants:
    .intro--travel : mark holds centre, then descends into its footer position
-   .intro--enter  : mark slides down from above into the centre, then dissolves */
+   .intro--enter  : mark slides down from above into the centre, then dissolves
+   The brown backdrop lives on ::before so it can clear while the mark
+   keeps travelling on top of the revealed page. */
 .intro {
     position: fixed;
     inset: 0;
@@ -67,49 +68,69 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #3a1c11;
     pointer-events: none;
-    /* distance from screen centre down to where the footer mark lives */
-    --drop: calc(50vh - 58px);
+    /* centre of screen down to the exact centre of the footer mark */
+    --pad: clamp(30px, 3.2vw, 44px);
+    --mark: clamp(22px, 1.6vw + 12px, 28px);
+    --drop: calc(50vh - (var(--pad) + var(--mark) / 2));
 }
 
 @supports (height: 100svh) {
-    .intro { --drop: calc(50svh - 58px); }
+    .intro { --drop: calc(50svh - (var(--pad) + var(--mark) / 2)); }
 }
 
+.intro::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #3a1c11;
+}
+
+/* Mark is sized to match the footer mark exactly, then scaled up at the start,
+   so it lands at precisely the right size with no jump */
 .intro img {
-    width: 40px;
+    width: var(--mark);
     height: auto;
     opacity: 0;
+    position: relative;
     will-change: transform, opacity;
 }
 
 /* Variant A - descends into the footer position */
-.intro--travel { animation: introOut 0.8s var(--ease) 1.05s both; }
+.intro--travel { animation: introHide 0s linear 3.45s forwards; }
 
-.intro--travel img { animation: introTravel 3s var(--ease-drift) both; }
+.intro--travel::before { animation: introOut 1s var(--ease) 1.05s both; }
+
+.intro--travel img { animation: introTravel 3.4s var(--ease-drift) both; }
 
 @keyframes introTravel {
-    0%   { opacity: 0;    transform: translateY(0) scale(0.94); }
-    14%  { opacity: 0.95; transform: translateY(0) scale(1); }
-    30%  { opacity: 0.95; transform: translateY(0) scale(1); }
-    97%  { opacity: 0.95; transform: translateY(var(--drop)) scale(0.7); }
-    100% { opacity: 0;    transform: translateY(var(--drop)) scale(0.7); }
+    0%   { opacity: 0;    transform: translateY(0) scale(1.43); }
+    12%  { opacity: 0.9;  transform: translateY(0) scale(1.43); }
+    26%  { opacity: 0.9;  transform: translateY(0) scale(1.43); }
+    85%  { opacity: 0.9;  transform: translateY(var(--drop)) scale(1); }
+    100% { opacity: 0;    transform: translateY(var(--drop)) scale(1); }
 }
 
 /* Variant B - slides down from above into the centre */
-.intro--enter { animation: introOut 0.9s var(--ease) 1.6s both; }
+.intro--enter { animation: introHide 0s linear 2.5s forwards; }
 
-.intro--enter img { animation: introEnter 1.6s var(--ease) both; }
+.intro--enter::before { animation: introOut 0.9s var(--ease) 1.6s both; }
+
+.intro--enter img { animation: introEnter 2.5s var(--ease) both; }
 
 @keyframes introEnter {
-    0%   { opacity: 0;    transform: translateY(-34px); }
-    45%  { opacity: 0.95; transform: translateY(0); }
-    100% { opacity: 0.95; transform: translateY(0); }
+    0%   { opacity: 0;   transform: translateY(-34px) scale(1.43); }
+    28%  { opacity: 0.9; transform: translateY(0) scale(1.43); }
+    64%  { opacity: 0.9; transform: translateY(0) scale(1.43); }
+    100% { opacity: 0;   transform: translateY(0) scale(1.43); }
 }
 
 @keyframes introOut {
-    to { opacity: 0; visibility: hidden; }
+    to { opacity: 0; }
+}
+
+@keyframes introHide {
+    to { visibility: hidden; }
 }
 
 /* ---- MASK RISE: lines lift from behind an invisible edge ---- */
@@ -133,7 +154,7 @@ body {
 .tagline       { animation: rise 1.15s var(--ease) 1.75s both; }
 .main-nav      { animation: rise 1.15s var(--ease) 1.95s both; }
 /* footer mark appears exactly as the travelling mark lands on it */
-.footer-symbol { animation: fadein 0.5s var(--ease) 2.85s both; }
+.footer-symbol { animation: fadein 1s var(--ease) 2.6s both; }
 
 /* Variant B has no travel, so the footer mark can arrive a touch earlier */
 body.intro-enter .logo-img      { animation-delay: 1.85s; }
@@ -172,7 +193,7 @@ body.page-exit {
         animation: none;
         transform: none;
     }
-    .intro { display: none !important; }
+    .intro, .intro::before { display: none !important; }
 }
 
 /* PAGE BACKGROUNDS */
