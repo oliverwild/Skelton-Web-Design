@@ -21,7 +21,22 @@
     <meta property="og:title" content="Studio Skelton" />
     <meta property="og:description" content="Studio Skelton — London based hospitality &amp; residential interior design." />
     <meta property="og:url" content="https://oliverwild.github.io/Skelton-Web-Design/" />
-    <link rel="stylesheet" href="style.css?v=7" />
+    <link rel="stylesheet" href="style.css?v=8" />
+    <script>
+    /* Decide before first paint whether the opening hold should play.
+       It runs once per visit - navigating between pages will not replay it.
+       Add ?intro to the URL to force a replay while reviewing. */
+    (function () {
+        if (location.search.indexOf('intro') !== -1) return;
+        try {
+            if (sessionStorage.getItem('skeltonIntroSeen')) {
+                document.documentElement.className += ' no-intro';
+            } else {
+                sessionStorage.setItem('skeltonIntroSeen', '1');
+            }
+        } catch (e) { /* private mode: let it play */ }
+    })();
+    </script>
 </head>
 
 <body class="home intro-enter">
@@ -47,21 +62,6 @@
             <img src="images/symbol.png" alt="Home" width="34" height="34">
         </a>
     </footer>
-
-    <script>
-    // Opening hold plays once per browsing session
-    (function () {
-        // ?intro forces a replay - handy while reviewing
-        if (location.search.indexOf('intro') !== -1) return;
-        try {
-            if (sessionStorage.getItem('seenIntroB')) {
-                document.body.classList.add('no-intro');
-            } else {
-                sessionStorage.setItem('seenIntroB', '1');
-            }
-        } catch (e) { /* private mode: just play it */ }
-    })();
-    </script>
 
     <script>
     // Soft fade-out when navigating between pages

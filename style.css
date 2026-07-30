@@ -168,12 +168,13 @@ body.intro-enter .footer-symbol { animation-delay: 2.5s; }
 .about-lead  .reveal:nth-of-type(2) > span { animation-delay: 0.48s; }
 .about-body  { animation: fadein 1.4s var(--ease) 0.95s both; }
 
-/* If the opening hold has been skipped, the home page starts immediately */
-body.no-intro .logo-img      { animation-delay: 0.2s; }
-body.no-intro .tagline       { animation-delay: 0.42s; }
-body.no-intro .main-nav      { animation-delay: 0.62s; }
-body.no-intro .footer-symbol { animation-delay: 0.8s; }
-body.no-intro .intro         { display: none; }
+/* Returning within the same visit: no opening hold, content starts at once.
+   The class is set on <html> before paint, so nothing flashes. */
+.no-intro .logo-img      { animation-delay: 0.2s; }
+.no-intro .tagline       { animation-delay: 0.42s; }
+.no-intro .main-nav      { animation-delay: 0.62s; }
+.no-intro .footer-symbol { animation-delay: 0.8s; }
+.no-intro .intro         { display: none; }
 
 /* Fade out when navigating to another page */
 @keyframes pageout {
