@@ -44,7 +44,11 @@ body {
 }
 
 /* One easing curve, used everywhere: fast start, long soft landing */
-:root { --ease: cubic-bezier(0.16, 1, 0.3, 1); }
+:root {
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    /* gentler curve for long travels - drifts rather than darts */
+    --ease-drift: cubic-bezier(0.5, 0, 0.2, 1);
+}
 
 /* Elements rise gently as they fade in */
 @keyframes rise {
@@ -83,13 +87,13 @@ body {
 /* Variant A - descends into the footer position */
 .intro--travel { animation: introOut 0.8s var(--ease) 1.05s both; }
 
-.intro--travel img { animation: introTravel 2.1s var(--ease) both; }
+.intro--travel img { animation: introTravel 3s var(--ease-drift) both; }
 
 @keyframes introTravel {
     0%   { opacity: 0;    transform: translateY(0) scale(0.94); }
-    20%  { opacity: 0.95; transform: translateY(0) scale(1); }
-    42%  { opacity: 0.95; transform: translateY(0) scale(1); }
-    96%  { opacity: 0.95; transform: translateY(var(--drop)) scale(0.7); }
+    14%  { opacity: 0.95; transform: translateY(0) scale(1); }
+    30%  { opacity: 0.95; transform: translateY(0) scale(1); }
+    97%  { opacity: 0.95; transform: translateY(var(--drop)) scale(0.7); }
     100% { opacity: 0;    transform: translateY(var(--drop)) scale(0.7); }
 }
 
@@ -125,11 +129,11 @@ body {
 }
 
 /* Staged reveal, timed to begin as the opening hold dissolves */
-.logo-img      { animation: rise 1.15s var(--ease) 1.45s both; }
-.tagline       { animation: rise 1.15s var(--ease) 1.7s both; }
-.main-nav      { animation: rise 1.15s var(--ease) 1.9s both; }
+.logo-img      { animation: rise 1.15s var(--ease) 1.5s both; }
+.tagline       { animation: rise 1.15s var(--ease) 1.75s both; }
+.main-nav      { animation: rise 1.15s var(--ease) 1.95s both; }
 /* footer mark appears exactly as the travelling mark lands on it */
-.footer-symbol { animation: fadein 0.6s var(--ease) 1.95s both; }
+.footer-symbol { animation: fadein 0.5s var(--ease) 2.85s both; }
 
 /* Variant B has no travel, so the footer mark can arrive a touch earlier */
 body.intro-enter .logo-img      { animation-delay: 1.85s; }
