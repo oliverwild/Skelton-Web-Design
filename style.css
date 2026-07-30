@@ -57,8 +57,7 @@ body {
 }
 
 /* ---- OPENING HOLD ----
-   .intro--travel : mark holds centre, then descends into its footer position
-   .intro--enter  : mark slides down from above into the centre, then dissolves
+   The mark holds centre, then descends into its footer position.
    The brown backdrop lives on ::before so it can clear while the mark
    keeps travelling on top of the revealed page. */
 .intro {
@@ -96,7 +95,6 @@ body {
     will-change: transform, opacity;
 }
 
-/* Variant A - descends into the footer position */
 .intro--travel { animation: introHide 0s linear 3.45s forwards; }
 
 .intro--travel::before { animation: introOut 1s var(--ease) 1.05s both; }
@@ -109,20 +107,6 @@ body {
     26%  { opacity: 0.9;  transform: translateY(0) scale(1.43); }
     85%  { opacity: 0.9;  transform: translateY(var(--drop)) scale(1); }
     100% { opacity: 0;    transform: translateY(var(--drop)) scale(1); }
-}
-
-/* Variant B - slides down from above into the centre */
-.intro--enter { animation: introHide 0s linear 2.5s forwards; }
-
-.intro--enter::before { animation: introOut 0.9s var(--ease) 1.6s both; }
-
-.intro--enter img { animation: introEnter 2.5s var(--ease) both; }
-
-@keyframes introEnter {
-    0%   { opacity: 0;   transform: translateY(-34px) scale(1.43); }
-    28%  { opacity: 0.9; transform: translateY(0) scale(1.43); }
-    64%  { opacity: 0.9; transform: translateY(0) scale(1.43); }
-    100% { opacity: 0;   transform: translateY(0) scale(1.43); }
 }
 
 @keyframes introOut {
@@ -155,12 +139,6 @@ body {
 .main-nav      { animation: rise 1.15s var(--ease) 1.95s both; }
 /* footer mark appears exactly as the travelling mark lands on it */
 .footer-symbol { animation: fadein 1s var(--ease) 2.6s both; }
-
-/* Variant B has no travel, so the footer mark can arrive a touch earlier */
-body.intro-enter .logo-img      { animation-delay: 1.85s; }
-body.intro-enter .tagline       { animation-delay: 2.1s; }
-body.intro-enter .main-nav      { animation-delay: 2.3s; }
-body.intro-enter .footer-symbol { animation-delay: 2.5s; }
 
 /* About page: title and lead mask-rise, body follows softly */
 .about-title .reveal > span { animation-delay: 0.25s; }
