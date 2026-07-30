@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Render check — Studio Skelton</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3" />
+    <style>
+        body.home { justify-content: flex-start; }
+        .readout {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(0,0,0,0.85); color: #ffd9a8;
+            font-family: ui-monospace, Menlo, Consolas, monospace;
+            font-size: 13px; line-height: 1.7; padding: 14px 18px; z-index: 999;
+            white-space: pre;
+        }
+        .probe { margin-top: 220px; }
+    </style>
+</head>
+<body class="home">
+    <div class="readout" id="out">measuring…</div>
+    <main class="center-content probe">
+        <img class="logo-img" id="logo" src="images/logo.png" alt="Studio Skelton" />
+        <p class="tagline" id="tag">Hospitality &amp; residential interior design</p>
+    </main>
+    <nav class="main-nav" id="nav">
+        <a href="#">About</a><span>|</span><a href="#">Gallery</a><span>|</span><a href="#">Instagram</a><span>|</span><a href="#">Contact</a>
+    </nav>
+    <script>
+    function px(el, prop) { return getComputedStyle(el)[prop]; }
+    function report() {
+        var logo = document.getElementById('logo');
+        var zoomEstimate = (window.outerWidth && window.innerWidth)
+            ? Math.round((window.outerWidth / window.innerWidth) * 100) / 100 : 'n/a';
+        var lines = [
+            'HOST            : ' + location.hostname,
+            'viewport width  : ' + window.innerWidth + ' CSS px',
+            'devicePixelRatio: ' + window.devicePixelRatio,
+            'screen width    : ' + screen.width,
+            'outer/inner     : ' + zoomEstimate + '   <-- differs from ~1 means ZOOM is on',
+            'visualViewport  : ' + (window.visualViewport ? Math.round(window.visualViewport.scale*100)/100 : 'n/a'),
+            '---',
+            'logo rendered   : ' + Math.round(logo.getBoundingClientRect().width) + ' px  (' +
+                (100*logo.getBoundingClientRect().width/window.innerWidth).toFixed(1) + '% of viewport)',
+            'tagline size    : ' + px(document.getElementById('tag'), 'fontSize'),
+            'nav size        : ' + px(document.getElementById('nav'), 'fontSize'),
+            'root font size  : ' + px(document.documentElement, 'fontSize') + '   <-- should be 16px'
+        ];
+        document.getElementById('out').textContent = lines.join('\n');
+    }
+    window.addEventListener('load', report);
+    window.addEventListener('resize', report);
+    report();
+    </script>
+</body>
+</html>
