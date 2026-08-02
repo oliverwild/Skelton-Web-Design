@@ -20,7 +20,7 @@
     <meta property="og:title" content="About — Studio Skelton" />
     <meta property="og:description" content="Studio Skelton is a London based interior design studio, working across boutique hospitality and private residential projects." />
     <meta property="og:url" content="https://oliverwild.github.io/Skelton-Web-Design/about.html" />
-    <link rel="stylesheet" href="style.css?v=11" />
+    <link rel="stylesheet" href="style.css?v=12" />
 </head>
 
 <body class="about">
@@ -47,6 +47,59 @@
             <img src="images/symbol.png" alt="Home" width="34" height="34">
         </a>
     </footer>
+
+
+    <script>
+    /* Splits the paragraph into its actual rendered lines so each one can
+       mask-rise like the title and lead. Re-runs on resize because the
+       line breaks change with the width. */
+    (function () {
+        var el = document.querySelector('.about-body');
+        if (!el || !('querySelectorAll' in el)) return;
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        var source = el.textContent.replace(/\s+/g, ' ').trim();
+        var played = false;
+
+        function build(animate) {
+            el.classList.remove('split');
+            el.innerHTML = source.split(' ')
+                .map(function (w) { return '<span class="w">' + w + '</span>'; }).join(' ');
+
+            var words = el.querySelectorAll('.w');
+            var lines = [], current = [], top = null;
+            for (var i = 0; i < words.length; i++) {
+                var t = words[i].offsetTop;
+                if (top === null) top = t;
+                if (Math.abs(t - top) > 2) { lines.push(current); current = []; top = t; }
+                current.push(words[i].textContent);
+            }
+            if (current.length) lines.push(current);
+
+            el.innerHTML = lines.map(function (line, i) {
+                var style = animate
+                    ? ' style="animation-delay:' + (0.6 + i * 0.09).toFixed(2) + 's"'
+                    : ' style="animation:none;transform:none"';
+                return '<span class="reveal"><span' + style + '>' + line.join(' ') + '</span></span>';
+            }).join('');
+            el.classList.add('split');
+        }
+
+        function start() { build(true); played = true; }
+
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(start);
+        } else {
+            start();
+        }
+
+        var timer;
+        window.addEventListener('resize', function () {
+            clearTimeout(timer);
+            timer = setTimeout(function () { build(!played); }, 160);
+        });
+    })();
+    </script>
 
     <script>
     // Soft fade-out when navigating between pages

@@ -140,11 +140,23 @@ body {
 /* footer mark appears exactly as the travelling mark lands on it */
 .footer-symbol { animation: fadein 1s var(--ease) 2.6s both; }
 
-/* About page: title and lead mask-rise, body follows softly */
+/* About page: title, lead and body all mask-rise, line by line */
 .about-title .reveal > span { animation-delay: 0.25s; }
 .about-lead  .reveal:nth-of-type(1) > span { animation-delay: 0.37s; }
 .about-lead  .reveal:nth-of-type(2) > span { animation-delay: 0.48s; }
-.about-body  { animation: fadein 1.4s var(--ease) 0.95s both; }
+
+/* Fallback if the line splitter cannot run: the paragraph simply fades in */
+.about-body { animation: fadein 1.4s var(--ease) 0.95s both; }
+
+/* Once split into lines, the lines carry the animation instead */
+.about-body.split { animation: none; opacity: 1; }
+
+/* A little slack so italic descenders are not clipped by the mask */
+.about-body .reveal,
+.about-lead .reveal {
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+}
 
 /* Returning within the same visit: no opening hold, content starts at once.
    The class is set on <html> before paint, so nothing flashes. */
