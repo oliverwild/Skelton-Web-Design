@@ -142,8 +142,6 @@ body {
 
 /* About page: title, lead and body all mask-rise, line by line */
 .about-title .reveal > span { animation-delay: 0.25s; }
-.about-lead  .reveal:nth-of-type(1) > span { animation-delay: 0.37s; }
-.about-lead  .reveal:nth-of-type(2) > span { animation-delay: 0.48s; }
 
 /* Fallback if the line splitter cannot run: the paragraph simply fades in */
 .about-body { animation: fadein 1.4s var(--ease) 0.95s both; }
@@ -152,8 +150,7 @@ body {
 .about-body.split { animation: none; opacity: 1; }
 
 /* A little slack so italic descenders are not clipped by the mask */
-.about-body .reveal,
-.about-lead .reveal {
+.about-body .reveal {
     padding-bottom: 0.14em;
     margin-bottom: -0.14em;
 }
@@ -309,17 +306,6 @@ body.about { background-image: url("images/about-bg.webp"); }
     text-transform: uppercase;
     letter-spacing: 0.22em;
     margin-bottom: 2.6rem;
-}
-
-.about-lead {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-style: italic;
-    font-size: clamp(1.12rem, 0.7vw + 0.95rem, 1.4rem);
-    line-height: 1.45;
-    letter-spacing: 0.01em;
-    margin-bottom: 2.2rem;
-    font-feature-settings: "liga" 1, "kern" 1;
 }
 
 .about-text {

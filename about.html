@@ -20,7 +20,7 @@
     <meta property="og:title" content="About — Studio Skelton" />
     <meta property="og:description" content="Studio Skelton is a London based interior design studio, working across boutique hospitality and private residential projects." />
     <meta property="og:url" content="https://oliverwild.github.io/Skelton-Web-Design/about.html" />
-    <link rel="stylesheet" href="style.css?v=12" />
+    <link rel="stylesheet" href="style.css?v=14" />
 </head>
 
 <body class="about">
@@ -28,16 +28,12 @@
         <h2 class="about-title"><span class="reveal"><span>About</span></span></h2>
 
         <div class="about-text">
-            <p class="about-lead">
-                <span class="reveal"><span>Studio Skelton is a London based</span></span>
-                <span class="reveal"><span>interior design studio.</span></span>
-            </p>
-
             <p class="about-body">
-                Working across boutique hospitality and private residential projects, the studio
-                creates interiors with a deep sense of place. Every project is informed by a
-                thorough understanding of the building, its history and the people who will use
-                it, shaping spaces with lasting character, warmth and soul.
+                Studio Skelton is a London based interior design studio. Working across boutique
+                hospitality and private residential projects, the studio creates interiors with a
+                deep sense of place. Every project is informed by a thorough understanding of the
+                building, its history and the people who will use it, shaping spaces with lasting
+                character, warmth and soul.
             </p>
         </div>
     </main>
@@ -78,7 +74,7 @@
 
             el.innerHTML = lines.map(function (line, i) {
                 var style = animate
-                    ? ' style="animation-delay:' + (0.6 + i * 0.09).toFixed(2) + 's"'
+                    ? ' style="animation-delay:' + (0.4 + i * 0.09).toFixed(2) + 's"'
                     : ' style="animation:none;transform:none"';
                 return '<span class="reveal"><span' + style + '>' + line.join(' ') + '</span></span>';
             }).join('');
